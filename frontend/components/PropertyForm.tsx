@@ -192,7 +192,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
         LengthFromWest: Number(form.LengthFromWest),
         StreetWidth: Number(form.StreetWidth),
       };
-      const res = await fetch('http://localhost:8000/predict', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
