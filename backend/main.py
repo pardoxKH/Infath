@@ -18,7 +18,7 @@ app = FastAPI(
 # Add CORS middleware with more permissive settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://infath.vercel.app"], 
+    allow_origins=["https://infath.vercel.app", "https://infath-y6pj.vercel.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
