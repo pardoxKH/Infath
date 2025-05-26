@@ -51,19 +51,19 @@ const fieldLabels: Record<keyof FormState, string> = {
 };
 
 const regions = [
-  "Riyadh",
-  "Makkah",
-  "Madinah",
-  "Eastern Province",
-  "Asir",
-  "Tabuk",
-  "Hail",
-  "Northern Borders",
-  "Jazan",
-  "Najran",
-  "Al Baha",
-  "Al Jawf",
-  "Al Qassim"
+  { value: "Riyadh", label: "الرياض" },
+  { value: "Makkah", label: "مكة المكرمة" },
+  { value: "Madinah", label: "المدينة المنورة" },
+  { value: "Eastern Province", label: "المنطقة الشرقية" },
+  { value: "Asir", label: "عسير" },
+  { value: "Tabuk", label: "تبوك" },
+  { value: "Hail", label: "حائل" },
+  { value: "Northern Borders", label: "الحدود الشمالية" },
+  { value: "Jazan", label: "جازان" },
+  { value: "Najran", label: "نجران" },
+  { value: "Bahah", label: "الباحة" },
+  { value: "Jawf", label: "الجوف" },
+  { value: "Qassim", label: "القصيم" }
 ];
 
 const cityRegionMapping: Record<string, string[]> = {
@@ -83,10 +83,10 @@ const cityRegionMapping: Record<string, string[]> = {
 };
 
 const assetTypes = [
-  "Housing Land",
-  "Commercial Land",
-  "Raw Land",
-  "Farming Land"
+  { value: "Housing Land", label: "أرض سكنية" },
+  { value: "Commercial Land", label: "أرض تجارية" },
+  { value: "Raw Land", label: "أرض خام" },
+  { value: "Farming Land", label: "أرض زراعية" }
 ];
 
 const assetLevels = ['A', 'B', 'C', 'D'];
@@ -223,7 +223,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
         >
           <option value="">اختر المنطقة</option>
           {regions.map(region => (
-            <option key={region} value={region}>{region}</option>
+            <option key={region.value} value={region.value}>{region.label}</option>
           ))}
         </select>
       );
@@ -261,7 +261,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
         >
           <option value="">اختر نوع العقار</option>
           {assetTypes.map(type => (
-            <option key={type} value={type}>{type}</option>
+            <option key={type.value} value={type.value}>{type.label}</option>
           ))}
         </select>
       );
