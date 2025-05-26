@@ -94,7 +94,6 @@ const assetLevels = ['A', 'B', 'C', 'D'];
 const requiredFields: (keyof FormState)[] = [
   'Area',
   'AssetLevelId',
-  'East_order',
   'EvaluationAssetTypeName',
   'Latitude',
   'LengthFromEast',
@@ -102,13 +101,10 @@ const requiredFields: (keyof FormState)[] = [
   'LengthFromSouth',
   'LengthFromWest',
   'Longitude',
-  'NorthBorder',
   'PropAssetCityName',
   'PropAssetNeighborhoodName',
   'PropAssetRegionName',
-  'SouthBorder',
-  'StreetWidth',
-  'WestBorder',
+  'StreetWidth'
 ];
 //testtestsetestestest
 export default function PropertyForm({ onResult }: PropertyFormProps) {
@@ -219,7 +215,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
           className="border border-infath-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-infath-primary/30 font-arabic text-right"
           value={value}
           onChange={handleChange}
-          required
+          required={requiredFields.includes(key)}
         >
           <option value="">اختر المنطقة</option>
           {regions.map(region => (
@@ -238,7 +234,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
           className="border border-infath-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-infath-primary/30 font-arabic text-right"
           value={value}
           onChange={handleChange}
-          required
+          required={requiredFields.includes(key)}
           disabled={!form.PropAssetRegionName}
         >
           <option value="">اختر المدينة</option>
@@ -257,7 +253,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
           className="border border-infath-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-infath-primary/30 font-arabic text-right"
           value={value}
           onChange={handleChange}
-          required
+          required={requiredFields.includes(key)}
         >
           <option value="">اختر نوع العقار</option>
           {assetTypes.map(type => (
@@ -275,7 +271,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
           className="border border-infath-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-infath-primary/30 font-arabic text-right"
           value={value}
           onChange={handleChange}
-          required
+          required={requiredFields.includes(key)}
         >
           <option value="">اختر مستوى العقار</option>
           {assetLevels.map(level => (
@@ -295,7 +291,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
         className="border border-infath-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-infath-primary/30 font-arabic text-right"
         value={value}
         onChange={handleChange}
-        required
+        required={requiredFields.includes(key)}
         placeholder={`أدخل ${label.toLowerCase()}`}
         min={key === 'Area' || key === 'StreetWidth' ? '0.01' : 
              key.toLowerCase().includes('length') ? '0' : undefined}
@@ -353,7 +349,7 @@ export default function PropertyForm({ onResult }: PropertyFormProps) {
             {group.fields.map((key) => (
               <div key={key} className="flex flex-col">
                 <label htmlFor={key} className="font-medium mb-2 text-infath-primary font-arabic text-right">
-                  {fieldLabels[key]} <span className="text-red-500">*</span>
+                  {fieldLabels[key]} {requiredFields.includes(key) && <span className="text-red-500">*</span>}
                 </label>
                 {renderField(key)}
               </div>
